@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
   TextEditingController nameController = TextEditingController();
   TextEditingController contactController = TextEditingController();
   List<Contact> contacts = List.empty(growable: true);
@@ -21,8 +22,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 81, 151, 225),
         centerTitle: true,
-        title: const Text('Contacts List'),
+        title: const Text('Danh bạ'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -32,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             TextField(
               controller: nameController,
               decoration: const InputDecoration(
-                  hintText: 'Contact Name',
+                  hintText: 'Tên người',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                     Radius.circular(10),
@@ -44,7 +46,7 @@ class _HomePageState extends State<HomePage> {
               keyboardType: TextInputType.number,
               maxLength: 10,
               decoration: const InputDecoration(
-                  hintText: 'Contact Number',
+                  hintText: 'Số điện thoại',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                     Radius.circular(10),
@@ -68,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                       }
                       //
                     },
-                    child: const Text('Save')),
+                    child: const Text('Lưu')),
                 ElevatedButton(
                     onPressed: () {
                       //
@@ -85,13 +87,13 @@ class _HomePageState extends State<HomePage> {
                       }
                       //
                     },
-                    child: const Text('Update')),
+                    child: const Text('Chỉnh sửa')),
               ],
             ),
             const SizedBox(height: 10),
             contacts.isEmpty
                 ? const Text(
-                    'No Contact yet..',
+                    'Chưa có liên hệ...',
                     style: TextStyle(fontSize: 22),
                   )
                 : Expanded(
@@ -111,9 +113,11 @@ class _HomePageState extends State<HomePage> {
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor:
+              //Nếu thứ tự là chia hết cho 2 thì icon sẽ màu xanh và ngược lại là màu tím
               index % 2 == 0 ? Colors.deepPurpleAccent : Colors.purple,
-          foregroundColor: Colors.white,
+          foregroundColor: Color.fromARGB(255, 244, 240, 240),
           child: Text(
+            //Chữ cái dầu của tên người liên hệ sẽ được hiện thị trên hình 
             contacts[index].name[0],
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
